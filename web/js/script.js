@@ -29,207 +29,6 @@ async function alertin() {
     console.log("a");
 }
 
-//let article;
-
-//function getAll() {
-//
-//    let ruta = "http://localhost:8080/MONGO/api/article/getAllArt";
-//    fetch(ruta,
-//            {method: "GET",
-//                headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
-//                body: new URLSearchParams(param)
-//            }
-//    ).then(response => response.json())
-//            .then(response => {
-//                console.log(response);
-
-
-//                console.log(response);
-//
-//                empleados = response;
-//                let datos = "";
-//                let i = 0;
-//                empleados.forEach((empleado) => {
-//                    let dato1 = empleado.idEmpleado + "<br>"
-//                            + empleado.codigo + "<br>"
-//                            + empleado.fechaIngreso + "<br>"
-//                            + empleado.puesto + "<br>"
-//                            + empleado.salarioBruto + "<br>";
-//                    //+ empleado.activo+"<br>";
-//                    let dato2 = empleado.persona.nombre + "<br>"
-//                            + empleado.persona.apPat + "<br>"
-//                            + empleado.persona.apMat + "<br>";
-//                    let dato3 = empleado.persona.genero + "<br>"
-//                            + empleado.persona.fechaNac + "<br>"
-//                            + empleado.persona.rfc + "<br>"
-//                            + empleado.persona.curp + "<br>";
-//                    let dato4 = empleado.persona.domicilio + "<br>"
-//                            + empleado.persona.cpPersona + "<br>"
-//                            + empleado.persona.ciudad + "<br>"
-//                            + empleado.persona.estado + "<br>"
-//                            + empleado.persona.telefono + "<br>";
-//                    let dato5 = empleado.user.id + "<br>"
-//                            + empleado.user.usuario + "<br>"
-//                    let dato6 = empleado.sucursal.nombre + "<br>"
-//                            + empleado.sucursal.domicilio + "<br>"
-//                            + empleado.sucursal.colonia + "<br>"
-//                            + empleado.sucursal.codigoPostal + "<br>"
-//                            + empleado.sucursal.ciudad + "<br>"
-//                            + empleado.sucursal.estado + "<br>"
-//                            + empleado.sucursal.telefono + "<br>";
-//                    datos += "<tr>";
-//                    datos += "<td>" + dato1 + "</td>";
-//                    datos += "<td>" + dato2 + "</td>";
-//                    datos += "<td>" + dato3 + "</td>";
-//                    datos += "<td>" + dato4 + "</td>";
-//                    datos += "<td>" + dato5 + "</td>";
-//                    datos += "<td>" + dato6 + "</td>";
-//                    if (empleado.activo === 0) {
-//                        datos += "<td> <button type='button' class='btn btn-light' onclick='test(" + empleado.persona.nombre + ")'> Modificar</button> </td>";
-//                        datos += "<td> <button type='button' class='btn btn-success' onclick='activarEmpl(" + empleado.idEmpleado + ")'> Activar</button> </td>";
-//
-//                    } else if (empleado.activo === 1) {
-//
-//                        datos += "<td> <button type='button' class='buton' onclick='test(" + i + ")'> Modificar</button> </td>";
-//                        datos += "<td> <button type='button' class='buton' onclick='eliminarEmpl(" + empleado.idEmpleado + ")'> Eliminar</button> </td>";
-//                    }
-//                    i++;
-//                });
-//                document.getElementById("tbEmpleados").innerHTML = datos;
-
-//            });
-//}
-
-//function pr1get() {
-//    let ruta = "http://localhost:8080/MONGO/api/article/getAllArt";
-//    fetch(ruta, {
-//        method: "GET",
-//        headers: {
-//            'Content-Type': 'application/json' // Cambiado a 'application/json' ya que no estás enviando datos de formulario
-//        }
-//    }).then(response => response.json())
-//            .then(response => {
-//                console.log(response);
-//                console.log(response[0].title);
-//                articles = response;
-////          let data="";
-//                let i = 0;
-//                articles.forEach((article) => {
-//                    let title = article.title;
-//                    let descr = article.description;
-//                    let img = article.image;
-//                    let datePost = article.datePost;
-//                    let user = article.usuario;
-//                    //let commet = article hacer otro cilo para los comentarios y asi poder generar varios en el articulo
-////              alert(title);
-//                    let cont = document.createElement("div class='art'");
-//                });
-//            })
-//            .catch(error => {
-//                console.error('Error fetching data:', error);
-//            });
-//}
-//function getAllArt1() {
-//    let ruta = "http://localhost:8080/MONGO/api/article/getAllArt";
-//    fetch(ruta, {
-//        method: "GET",
-//        headers: {
-//            'Content-Type': 'application/json'
-//        }
-//    })
-//            .then(response => response.json())
-//            .then(articles => {
-//                // Crear un contenedor para los artículos
-//                let container = document.createElement('div');
-//                container.classList.add('art-conta'); // Añadir una clase al contenedor
-//
-//                // Iterar sobre cada artículo en la respuesta
-//                articles.forEach(article => {
-//                    // Crear un div para cada artículo
-//                    let articleDiv = document.createElement('div');
-//                    articleDiv.classList.add('article'); // Añadir una clase al div del artículo
-//
-//                    // Crear elementos para mostrar los datos del artículo
-//                    let titleElement = document.createElement('h2');
-//                    titleElement.textContent = article.title;
-//
-//                    let dateElement = document.createElement('p');
-//                    dateElement.textContent = "Date: " + article.datePost;
-//
-//                    let descriptionElement = document.createElement('p');
-//                    descriptionElement.textContent = "Description: " + article.description;
-//
-//                    // Agregar los elementos al div del artículo
-//                    articleDiv.appendChild(titleElement);
-//                    articleDiv.appendChild(dateElement);
-//                    articleDiv.appendChild(descriptionElement);
-//
-//                    // Agregar el div del artículo al contenedor
-//                    container.appendChild(articleDiv);
-//                });
-//// Obtener el elemento main y agregar el contenedor de artículos
-//                document.getElementById('arts').appendChild(container);
-//
-//                // Obtener el elemento body y agregar el contenedor de artículos
-////        document.body.appendChild(container);
-//            })
-//            .catch(error => {
-//                console.error('Error fetching data:', error);
-//            });
-//}
-//function getAllArt1() {
-//    let ruta = "http://localhost:8080/MONGO/api/article/getAllArt";
-//    fetch(ruta, {
-//        method: "GET",
-//        headers: {
-//            'Content-Type': 'application/json'
-//        }
-//    })
-//            .then(response => response.json())
-//            .then(articles => {
-//                // Iterar sobre cada artículo en la respuesta
-//                articles.forEach(article => {
-//                    //console.log(article);
-//                    // Crear un contenedor para el artículo
-//                    let articleContainer = document.createElement('div');
-//                    articleContainer.classList.add('article-container'); // Añadir una clase al contenedor
-//                    let infocont = document.createElement('div');
-//                    infocont.classList.add('artc-inf'); // Añadir una clase al contenedor
-//                    // Crear un div para el artículo
-//                    let articleDiv = document.createElement('div');
-//                    articleDiv.classList.add('article'); // Añadir una clase al div del artículo
-//                    let infoDiv = document.createElement('div');
-//                    infoDiv.classList.add('article-i'); // Añadir una clase al div del artículo
-//                    // Crear elementos para mostrar los datos del artículo
-//                    let titleElement = document.createElement('h1');
-//                    titleElement.classList.add("artc-inf");
-//                    titleElement.textContent = article.title;
-//                    let dateElement = document.createElement('h5');
-//                    dateElement.classList.add("artc-inf");
-//                    dateElement.textContent = "Date post: " + article.datePost;
-//                    let descriptionElement = document.createElement('p');
-//                    descriptionElement.classList.add("artc-inf");
-//                    descriptionElement.textContent = "Description: " + article.description;
-//                    let imag = document.createElement("div");
-//                    imag.textContent = article.image;
-//                    imag.classList.add("img-art");
-//                    // Agregar los elementos al div del artículo
-//                    infoDiv.appendChild(titleElement);
-//                    infoDiv.appendChild(dateElement);
-//                    infoDiv.appendChild(descriptionElement);
-//                    articleDiv.appendChild(imag);
-//                    // Agregar el div del artículo al contenedor del artículo
-//                    infocont.appendChild(infoDiv);
-//                    articleContainer.appendChild(articleDiv);
-//                    
-//                    // Obtener el elemento body y agregar el contenedor de artículo
-//                    document.getElementById('arts').appendChild(articleContainer);
-//                });
-//            })
-//            .catch(error => {
-//                console.error('Error fetching data:', error);
-//            });
-//}
 function getAllArt() {
     let ruta = "http://localhost:8080/MONGO/api/article/getAllArt";
     fetch(ruta, {
@@ -238,54 +37,378 @@ function getAllArt() {
             'Content-Type': 'application/json'
         }
     })
-    .then(response => response.json())
-    .then(articles => {
-        // Iterar sobre cada artículo en la respuesta
-        articles.forEach(article => {
-            // Crear un contenedor principal para el artículo
-            let articleContainer = document.createElement('div');
-            articleContainer.classList.add('article-container'); // Añadir una clase al contenedor principal
+            .then(response => response.json())
+            .then(articles => {
+                // Iterar sobre cada artículo en la respuesta
+                articles.forEach(article => {
+                    console.log(article.datePost);
+                    //alert(article.usuario.username);
+                    // Crear un contenedor principal para el artículo
+                    let articleContainer = document.createElement('div');
+                    articleContainer.classList.add('article-container'); // Añadir una clase al contenedor principal
+                    // Crear un contenedor para la información del artículo (título, fecha, descripción)
+                    let infoContainer = document.createElement('div');
+                    infoContainer.classList.add('artc-inf'); // Añadir una clase al contenedor de información
 
-            // Crear un contenedor para la información del artículo (título, fecha, descripción)
-            let infoContainer = document.createElement('div');
-            infoContainer.classList.add('artc-inf'); // Añadir una clase al contenedor de información
+                    // Crear un div para el artículo (donde irá la imagen)
+                    let articleDiv = document.createElement('div');
+                    articleDiv.classList.add('img-art'); // Añadir una clase al div del artículo
 
-            // Crear un div para el artículo (donde irá la imagen)
-            let articleDiv = document.createElement('div');
-            articleDiv.classList.add('img-art'); // Añadir una clase al div del artículo
+                    // Crear elementos para mostrar los datos del artículo
+                    let titleElement = document.createElement('h1');
+                    titleElement.textContent = article.title;
 
-            // Crear elementos para mostrar los datos del artículo
-            let titleElement = document.createElement('h1');
-            titleElement.textContent = article.title;
+                    let dateElement = document.createElement('h5');
+                    dateElement.textContent = "Date post: " + article.datePost;
+                    let userContainer = document.createElement('div');
+                    userContainer.classList.add('users-container');
 
-            let dateElement = document.createElement('h5');
-            dateElement.textContent = "Date post: " + article.datePost;
+                    article.usuarios.forEach(usuario => {
+                        let userElement = document.createElement('h5');
+                        userElement.textContent = "Usuario: " + usuario.username;
+                        userContainer.appendChild(userElement);
+                    });
+                    let comCont = document.createElement('div');
+                    comCont.classList.add('commen-container');
+                    article.comments.forEach(comment => {
+                        let commElement = document.createElement('p');
+                        commElement.textContent = "Comentario: " + comment.mensaje + "\n" + "Usuario: " + comment.usuario.username;
+                        comCont.appendChild(commElement);
+                    });
+                    let descriptionElement = document.createElement('p');
+                    descriptionElement.textContent = "Description: " + article.description;
+                    // Crear un elemento para la imagen del artículo
+                    let imageElement = document.createElement('img');
+                    imageElement.src = article.image;
+                    imageElement.classList.add('article-image'); // Añadir una clase a la imagen
+                    // Agregar los elementos al contenedor de información
+                    infoContainer.appendChild(titleElement);
+                    infoContainer.appendChild(dateElement);
+                    infoContainer.appendChild(userContainer);
+                    infoContainer.appendChild(descriptionElement);
+                    // Agregar la imagen al div del artículo
+                    articleDiv.appendChild(imageElement);
+                    // Agregar el contenedor de información y el div del artículo al contenedor principal
+                    articleContainer.appendChild(infoContainer);
+                    articleContainer.appendChild(articleDiv);
+                    let reaccionesContainer = document.createElement('div');
+                    reaccionesContainer.classList.add('reactions-container');
+                    let reaccionDiv = document.createElement('div');
+                    reaccionDiv.textContent = `Like: ${article.like}, dislake: ${article.dislike}`;
+                    let like = document.createElement('i');
+                    like.onclick = function(){
+                        let valor = 1;
+                        let titulo = article.title;
+                        reacion(titulo,valor);
+                    };
+                    like.classList.add('fa', 'fa-thumbs-up');
+                    let dislike = document.createElement('i');
+                    dislike.onclick = function(){
+                        let valor = 2;
+                        let titulo = article.title;
+                        reacion(titulo,valor);
+                    };
+                    dislike.classList.add('fa', 'fa-thumbs-down');
+                    reaccionesContainer.appendChild(reaccionDiv);
+                    reaccionesContainer.appendChild(like);
+                    reaccionesContainer.appendChild(dislike);
+                    let secCom = document.createElement('div');
+                    secCom.classList.add('commen-container');
+                    let inputCom = document.createElement('input');
+                    inputCom.classList.add('inpCom');
+                    inputCom.id = "txtMsj";
+                    secCom.appendChild(inputCom);
+                    let btnCom = document.createElement('button');
+                    btnCom.textContent = 'Enviar';
+                    btnCom.onclick = function () {
+                        let mensaje = inputCom.value;
+                        let titulo = article.title;
+                        inserCom(mensaje, titulo);
+                    };
+                    btnCom.classList.add('btnCom');
+                    secCom.appendChild(btnCom);
+                    
+                    articleContainer.appendChild(comCont);
+                    articleContainer.appendChild(secCom);
+                    articleContainer.appendChild(reaccionesContainer);
+                    // Obtener el elemento donde se agregarán los artículos y agregar el contenedor principal del artículo
+                    document.getElementById('arts').appendChild(articleContainer);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+}
 
-            let descriptionElement = document.createElement('p');
-            descriptionElement.textContent = "Description: " + article.description;
 
-            // Crear un elemento para la imagen del artículo
-            let imageElement = document.createElement('div');
-            imageElement.textContent = article.image;
-            imageElement.classList.add('article-image'); // Añadir una clase a la imagen
+function insertarArticle() {
+    let title = document.getElementById("txtTitle").value;
+    let fecha = document.getElementById("txtDate").value;
+    let descri = document.getElementById("txtDesc").value;
 
-            // Agregar los elementos al contenedor de información
-            infoContainer.appendChild(titleElement);
-            infoContainer.appendChild(dateElement);
-            infoContainer.appendChild(descriptionElement);
+    // Leer la imagen seleccionada por el usuario
+    let input = document.getElementById("photo");
+    let file = input.files[0]; // Obtener el primer archivo seleccionado
 
-            // Agregar la imagen al div del artículo
-            articleDiv.appendChild(imageElement);
+    if (file) {
+        let reader = new FileReader();
+        reader.readAsDataURL(file); // Leer el contenido del archivo como una URL de datos
+        reader.onload = function () {
+            let imageCode = reader.result; // Obtener el código de la imagen
+            // Crear el objeto de parámetros con el código de la imagen
+            let params = {
+                "title": title,
+                "datePost": fecha,
+                "description": descri,
+                "image": imageCode, // Código de la imagen en lugar de la URL
+                "like": 0,
+                "dislike": 0,
+                "comments": [],
+                "usuario": [
+                    {
+                        "name": "mati"
+                    }
+                ]
+            };
 
-            // Agregar el contenedor de información y el div del artículo al contenedor principal
-            articleContainer.appendChild(infoContainer);
-            articleContainer.appendChild(articleDiv);
+            console.log(params);
+            if (parseInt(localStorage.getItem("token")) === 1) {
+                let url = "http://localhost:8080/MONGO/api/article/insert";
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(params)
+                })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert(JSON.stringify(data));
+                        })
+                        .catch(error => {
+                            console.error("Error al enviar la solicitud:", error);
+                        });
 
-            // Obtener el elemento donde se agregarán los artículos y agregar el contenedor principal del artículo
-            document.getElementById('arts').appendChild(articleContainer);
-        });
+            } else {
+                alert("FIRST LOG IN PLEASE");
+            }
+            clean();
+        };
+    } else {
+        console.error("No se seleccionó ninguna imagen.");
+    }
+}
+function inserCom(mensaje, titulo) {
+    //alert (mensaje+"+"+titulo);
+    if (mensaje && typeof mensaje === 'string') {
+        // Eliminar espacios en blanco al inicio y al final del mensaje
+        mensaje = mensaje.trim();
+
+
+        let params = {
+            "title": titulo,
+            "comments": [
+                {"mensaje": mensaje,
+                    "usuarioComenta": localStorage.getItem("user")
+                }
+            ]
+        };
+
+        console.log(params);
+        if (parseInt(localStorage.getItem("token")) !== null) {
+            let url = "http://localhost:8080/MONGO/api/article/updateCom";
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(params)
+            })
+                    .then(response => response.json())
+                    .then(data => {
+                        //alert(JSON.stringify(data));
+                    })
+                    .catch(error => {
+                        console.error("Error al enviar la solicitud:", error);
+                    });
+            cargaArtc();
+        } else {
+            alert("FIRST LOG IN PLEASE");
+        }
+        cleanCom();
+    } else {
+        // El mensaje está indefinido, null o no es una cadena
+        alert("Llena el campo de mensaje");
+        return; // Salir de la función
+    }
+}
+function reacion(titulo,valor) {
+    //hacer una condicion para saber a que icono le dan click 
+    //alert(titulo+"/"+valor);
+    let params={};
+    if(valor === 1){
+     params = {
+        "title": titulo,
+        "like": 1,
+        "dislike": 0
+    };
+    } else{
+        params = {
+        "title": titulo,
+        "like": 0,
+        "dislike": 1
+    };  
+    }
+    //console.log(params);
+    if (parseInt(localStorage.getItem("token")) !== null) {
+        let url = "http://localhost:8080/MONGO/api/article/reacciones";
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(params)
+        })
+                .then(response => response.json())
+                .then(data => {
+                    //alert(JSON.stringify(data));
+                })
+                .catch(error => {
+                    console.error("Error al enviar la solicitud:", error);
+                });
+        cargaArtc();
+    } else {
+        alert("FIRST LOG IN PLEASE");
+    }
+}
+
+
+function logIn() {
+    let username = document.getElementById("txtUser").value;
+    let password = document.getElementById("txtPassw").value;
+    let params = {
+        "username": username,
+        "password": password
+    };
+    //console.log(params);
+    let url = "http://localhost:8080/MONGO/api/article/logIn";
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(params)
     })
-    .catch(error => {
-        console.error('Error fetching data:', error);
-    });
+            .then(response => response.json())
+            .then(data => {
+                //alert(JSON.stringify(data));
+                if (data.success) {
+                    alert("Login Succesful");
+                    alertin();
+                    console.log("logeado");
+                    localStorage.setItem("token", 1);
+                } else {
+                    alert("USERNAME OR PASSWORD DOESNT EXIST \n CREATE AN ACCOUNT");
+                    cargaSignIn();
+                    console.log("no logeado");
+                    localStorage.setItem("token", 0);
+                }
+            })
+            .catch(error => {
+                alert("Error al enviar la solicitud:", error);
+            });
+}
+function logInv2() {
+    let username = document.getElementById("txtUser").value;
+    let email = document.getElementById("txtEmail").value;
+    let password = document.getElementById("txtPassw").value;
+    let params = {
+        "username": username,
+        "email": email,
+        "password": password
+    };
+
+    let url = "http://localhost:8080/MONGO/api/article/logInv2";
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(params)
+    })
+            .then(response => response.json())
+            .then(data => {
+                if (data && Object.keys(data.success).length > 0) {
+                    console.log(data);
+                    alert("Login Successful \n Welcome: " + username);
+                    console.log("Logged in");
+                    localStorage.setItem("token", 1);
+                    localStorage.setItem("user", username);
+                    alertin();
+                } else {
+                    alert("USERNAME OR PASSWORD DOESN'T EXIST \n CREATE AN ACCOUNT");
+                    //cargaSignIn();
+                    console.log("Not logged in");
+                    localStorage.setItem("token", 0);
+                    cleanLog();
+                }
+            })
+            .catch(error => {
+                alert("Error al enviar la solicitud:", error);
+            });
+}
+
+function singIn() {
+    let username = document.getElementById("txtUserSi").value;
+    let email = document.getElementById("txtEmailSi").value;
+    let password = document.getElementById("txtPasswSi").value;
+    let params = {
+        "username": username,
+        "email": email,
+        "password": password
+    };
+    //console.log(params);
+    let url = "http://localhost:8080/MONGO/api/article/singIn";
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(params)
+    })
+            .then(response => response.json())
+            .then(data => {
+                //alert(JSON.stringify(data));
+                if (data.success) {
+                    alert("Sign Succesful \n You have an account");
+                    alertin();
+                    console.log("Sign in succes");
+                    localStorage.setItem("token", 1);
+                } else {
+                    alert("USERNAME HAS ALREADY EXIST \n TRY ANOTHERONE");
+                    console.log("SIGN IN UNSUCCESFULE");
+                    localStorage.setItem("token", 0);
+                }
+            })
+            .catch(error => {
+                alert("Error al enviar la solicitud:", error);
+            });
+}
+
+
+function cleanLog() {
+    document.getElementById("txtUser").value = "";
+    document.getElementById("txtPassw").value = "";
+}
+;
+function clean() {
+    document.getElementById("txtTitle").value = "";
+    document.getElementById("txtDate").value = "";
+    document.getElementById("photo").value = "";
+    document.getElementById("txtDesc").value = "";
+}
+
+
+function cleanCom() {
+    document.getElementById("txtMsj").value = "";
 }

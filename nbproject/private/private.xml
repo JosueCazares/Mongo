@@ -2,11 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="SICEVA_V8">
-            <file>file:/C:/Users/josue/OneDrive/Escritorio/Universidad/5to%20Cuatri/DB_NUBE/MONGO/src/java/org/utl/model/Comments.java</file>
-            <file>file:/C:/Users/josue/OneDrive/Escritorio/Universidad/5to%20Cuatri/DB_NUBE/MONGO/src/java/org/utl/model/Articulo.java</file>
-            <file>file:/C:/Users/josue/OneDrive/Escritorio/Universidad/5to%20Cuatri/DB_NUBE/MONGO/src/java/org/utl/controller/ControllerArticle.java</file>
-            <file>file:/C:/Users/josue/OneDrive/Escritorio/Universidad/5to%20Cuatri/DB_NUBE/MONGO/src/java/org/utl/model/Reaccion.java</file>
-        </group>
+        <group name="SICEVA_V8"/>
     </open-files>
 </project-private>

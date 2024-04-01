@@ -11,25 +11,37 @@ import java.util.List;
  * @author josue
  */
 public class Articulo {
+    private String id;
     private String title;
     private String datePost;
     private String description;
     private String image;
-    private List<Reaccion> reaccion;
+    private int like;
+    private int dislike;
     private List<Comments> comments;
-    private Usuario usuario;
+    private List<Usuario> usuarios;
 
     public Articulo() {
     }
 
-    public Articulo(String title, String datePost, String description, String image, List<Reaccion> reaccion, List<Comments> comments, Usuario usuario) {
+    public Articulo(String id, String title, String datePost, String description, String image, int like, int dislike, List<Comments> comments, List<Usuario> usuarios) {
+        this.id = id;
         this.title = title;
         this.datePost = datePost;
         this.description = description;
         this.image = image;
-        this.reaccion = reaccion;
+        this.like = like;
+        this.dislike = dislike;
         this.comments = comments;
-        this.usuario = usuario;
+        this.usuarios = usuarios;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -64,12 +76,20 @@ public class Articulo {
         this.image = image;
     }
 
-    public List<Reaccion> getReaccion() {
-        return reaccion;
+    public int getLike() {
+        return like;
     }
 
-    public void setReaccion(List<Reaccion> reaccion) {
-        this.reaccion = reaccion;
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public int getDislike() {
+        return dislike;
+    }
+
+    public void setDislike(int dislike) {
+        this.dislike = dislike;
     }
 
     public List<Comments> getComments() {
@@ -80,31 +100,30 @@ public class Articulo {
         this.comments = comments;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public List<Usuario> getUsuarios() {
+        return usuarios;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Articulo{");
-        sb.append("title=").append(title);
+        sb.append("id=").append(id);
+        sb.append(", title=").append(title);
         sb.append(", datePost=").append(datePost);
         sb.append(", description=").append(description);
         sb.append(", image=").append(image);
-        sb.append(", reaccion=").append(reaccion);
+        sb.append(", like=").append(like);
+        sb.append(", dislike=").append(dislike);
         sb.append(", comments=").append(comments);
-        sb.append(", usuario=").append(usuario);
+        sb.append(", usuarios=").append(usuarios);
         sb.append('}');
         return sb.toString();
     }
 
-    
-
-    
-    
+        
 }

@@ -278,7 +278,7 @@ body {
 
 .article-container{
     height: 300px;
-    width: 70%;
+    width: 90%;
     background: #F0F0F0;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     margin: 10px;
@@ -286,13 +286,71 @@ body {
     display: flex;
     gap:10px;
 }
-
+/*--informacion de la imagen-----------*/
 .img-art{
-    height: 100px;
-    width: 100px;
-    background-color: red;
+    height: 90%;
+    width: 400px;
+
+}
+.img-art img {
+    height: 100%; /* Esto hace que la imagen ocupe toda la altura del contenedor */
+    width: 100%; /* Esto hace que la imagen ocupe toda la anchura del contenedor */
+    object-fit: cover; /* Esto ajustará la imagen para que cubra todo el contenedor */
+}
+/*informacion de fecha descripcion y titulo*/
+.artc-inf{
+    height: 100%;
+    width: 400px;
+}
+.artc-inf h1{
+    color: #252525;
+    text-align: center;
+    font-family: Inter;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+.artc-inf h5 , p{
+    color: #7E7E7E;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+/*informacion de reacciones*/
+.reactions-container {
+    height: 90%;
+    width: 200px;
+    font-size: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end; /* Alinea los iconos en la parte inferior */
+    text-align: center;
 }
 
-.artc-inf{
-    background-color: grey;
+/* Contenedor adicional para los iconos */
+.reactions-icons {
+    display: flex;
+    flex-direction: row; /* Alinea los iconos en fila */
 }
+
+/* Estilo para los iconos */
+.reactions-icons i {
+    margin-left: 5px; /* Espacio entre los iconos */
+}
+
+#arts{
+    overflow-y:  auto;
+    max-height: 700px;
+}
+
+.commen-container {
+    height: 90%;
+    width: 200px;
+    overflow:  auto;
+}
+
+
