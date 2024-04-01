@@ -89,27 +89,28 @@ function getAllArt() {
                     // Agregar la imagen al div del artículo
                     articleDiv.appendChild(imageElement);
                     // Agregar el contenedor de información y el div del artículo al contenedor principal
-                    articleContainer.appendChild(infoContainer);
-                    articleContainer.appendChild(articleDiv);
                     let reaccionesContainer = document.createElement('div');
                     reaccionesContainer.classList.add('reactions-container');
-                    let reaccionDiv = document.createElement('div');
+                    let reaccionDiv = document.createElement('p');
                     reaccionDiv.textContent = `Like: ${article.like}, dislake: ${article.dislike}`;
+                    infoContainer.appendChild(reaccionDiv);
+                    articleContainer.appendChild(infoContainer);
+                    articleContainer.appendChild(articleDiv);
                     let like = document.createElement('i');
-                    like.onclick = function(){
+                    like.onclick = function () {
                         let valor = 1;
                         let titulo = article.title;
-                        reacion(titulo,valor);
+                        reacion(titulo, valor);
                     };
                     like.classList.add('fa', 'fa-thumbs-up');
                     let dislike = document.createElement('i');
-                    dislike.onclick = function(){
+                    dislike.onclick = function () {
                         let valor = 2;
                         let titulo = article.title;
-                        reacion(titulo,valor);
+                        reacion(titulo, valor);
                     };
                     dislike.classList.add('fa', 'fa-thumbs-down');
-                    reaccionesContainer.appendChild(reaccionDiv);
+                    //reaccionesContainer.appendChild(reaccionDiv);
                     reaccionesContainer.appendChild(like);
                     reaccionesContainer.appendChild(dislike);
                     let secCom = document.createElement('div');
@@ -127,7 +128,7 @@ function getAllArt() {
                     };
                     btnCom.classList.add('btnCom');
                     secCom.appendChild(btnCom);
-                    
+
                     articleContainer.appendChild(comCont);
                     articleContainer.appendChild(secCom);
                     articleContainer.appendChild(reaccionesContainer);
@@ -183,7 +184,7 @@ function insertarArticle() {
                 })
                         .then(response => response.json())
                         .then(data => {
-                            alert(JSON.stringify(data));
+                            //alert(JSON.stringify(data));
                         })
                         .catch(error => {
                             console.error("Error al enviar la solicitud:", error);
@@ -215,7 +216,12 @@ function inserCom(mensaje, titulo) {
         };
 
         console.log(params);
-        if (parseInt(localStorage.getItem("token")) !== null) {
+        let token = localStorage.getItem("token");
+        //alert("lalas "+token.length);
+        if (token.length > 5) {
+            //alert("caca");
+            
+            console.log("token" + token);
             let url = "http://localhost:8080/MONGO/api/article/updateCom";
             fetch(url, {
                 method: "POST",
@@ -233,6 +239,7 @@ function inserCom(mensaje, titulo) {
                     });
             cargaArtc();
         } else {
+             console.log("token" + token);
             alert("FIRST LOG IN PLEASE");
         }
         cleanCom();
@@ -242,25 +249,25 @@ function inserCom(mensaje, titulo) {
         return; // Salir de la función
     }
 }
-function reacion(titulo,valor) {
+function reacion(titulo, valor) {
     //hacer una condicion para saber a que icono le dan click 
     //alert(titulo+"/"+valor);
-    let params={};
-    if(valor === 1){
-     params = {
-        "title": titulo,
-        "like": 1,
-        "dislike": 0
-    };
-    } else{
+    let params = {};
+    if (valor === 1) {
         params = {
-        "title": titulo,
-        "like": 0,
-        "dislike": 1
-    };  
+            "title": titulo,
+            "like": 1,
+            "dislike": 0
+        };
+    } else {
+        params = {
+            "title": titulo,
+            "like": 0,
+            "dislike": 1
+        };
     }
     //console.log(params);
-    if (parseInt(localStorage.getItem("token")) !== null) {
+    if (parseInt(localStorage.getItem("token")) > 0) {
         let url = "http://localhost:8080/MONGO/api/article/reacciones";
         fetch(url, {
             method: "POST",
@@ -306,7 +313,7 @@ function logIn() {
                     alert("Login Succesful");
                     alertin();
                     console.log("logeado");
-                    localStorage.setItem("token", 1);
+                    localStorage.setItem("token", 123456789);
                 } else {
                     alert("USERNAME OR PASSWORD DOESNT EXIST \n CREATE AN ACCOUNT");
                     cargaSignIn();
@@ -342,7 +349,7 @@ function logInv2() {
                     console.log(data);
                     alert("Login Successful \n Welcome: " + username);
                     console.log("Logged in");
-                    localStorage.setItem("token", 1);
+                    localStorage.setItem("token", 12345789);
                     localStorage.setItem("user", username);
                     alertin();
                 } else {
@@ -383,7 +390,7 @@ function singIn() {
                     alert("Sign Succesful \n You have an account");
                     alertin();
                     console.log("Sign in succes");
-                    localStorage.setItem("token", 1);
+                    localStorage.setItem("token", 123456789);
                 } else {
                     alert("USERNAME HAS ALREADY EXIST \n TRY ANOTHERONE");
                     console.log("SIGN IN UNSUCCESFULE");
@@ -411,4 +418,9 @@ function clean() {
 
 function cleanCom() {
     document.getElementById("txtMsj").value = "";
+}
+function cargaLogOut() {
+    localStorage.setItem("token", 0);
+    localStorage.removeItem("user");
+    alert("Log out successful");
 }

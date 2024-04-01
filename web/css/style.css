@@ -301,6 +301,7 @@ body {
 .artc-inf{
     height: 100%;
     width: 400px;
+    overflow: auto;
 }
 .artc-inf h1{
     color: #252525;
