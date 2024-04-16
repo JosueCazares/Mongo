@@ -15,6 +15,11 @@ async function cargaForm() {
     document.getElementById('main').innerHTML = html;
     getAllArt();
 }
+async function cargaEsta() {
+    const response = await fetch("html/estadisticas.html");
+    const html = await response.text();
+    document.getElementById('main').innerHTML = html;
+}
 async function cargaArtc() {
     const response = await fetch("html/articulos.html");
     const html = await response.text();
@@ -57,12 +62,15 @@ function getAllArt() {
                     // Crear elementos para mostrar los datos del artículo
                     let titleElement = document.createElement('h1');
                     titleElement.textContent = article.title;
-
+                    let title = article.title;
+                    palabra(title);
                     let dateElement = document.createElement('h5');
                     dateElement.textContent = "Date post: " + article.datePost;
                     let userContainer = document.createElement('div');
                     userContainer.classList.add('users-container');
-
+                    let comCon =  document.createElement('input');
+                    comCon.id='txtPalabra';
+                    comCon.disabled = true;
                     article.usuarios.forEach(usuario => {
                         let userElement = document.createElement('h5');
                         userElement.textContent = "Usuario: " + usuario.username;
@@ -77,6 +85,10 @@ function getAllArt() {
                     });
                     let descriptionElement = document.createElement('p');
                     descriptionElement.textContent = "Description: " + article.description;
+                    //let pr1 = palabra();
+                    //alert("prueba1"+pr1);
+                    //let comantarioREp = document.createElement('p');
+                    //comantarioREp.textContent="Comentario Fav: "+palabra;
                     // Crear un elemento para la imagen del artículo
                     let imageElement = document.createElement('img');
                     imageElement.src = article.image;
@@ -85,7 +97,9 @@ function getAllArt() {
                     infoContainer.appendChild(titleElement);
                     infoContainer.appendChild(dateElement);
                     infoContainer.appendChild(userContainer);
+                    infoContainer.appendChild(comCon);
                     infoContainer.appendChild(descriptionElement);
+//                    infoContainer.appendChild(comantarioREp);
                     // Agregar la imagen al div del artículo
                     articleDiv.appendChild(imageElement);
                     // Agregar el contenedor de información y el div del artículo al contenedor principal
@@ -121,13 +135,25 @@ function getAllArt() {
                     secCom.appendChild(inputCom);
                     let btnCom = document.createElement('button');
                     btnCom.textContent = 'Enviar';
+                    btnCom.classList.add('btnAction');
                     btnCom.onclick = function () {
                         let mensaje = inputCom.value;
                         let titulo = article.title;
                         inserCom(mensaje, titulo);
                     };
+                    let btnEsta = document.createElement('button');
+                    btnEsta.textContent = 'Estadisticas';
+                    btnEsta.classList.add('btnAction');
+                    btnEsta.onclick = function () {
+                        let like = article.like;
+                        let dislike = article.dislike;
+                        let mensajes = article.comments;
+                        estadisticas(like, dislike, mensajes);
+                    };
                     btnCom.classList.add('btnCom');
                     secCom.appendChild(btnCom);
+                    btnEsta.classList.add('btnCom');
+                    secCom.appendChild(btnEsta);
 
                     articleContainer.appendChild(comCont);
                     articleContainer.appendChild(secCom);
@@ -173,7 +199,8 @@ function insertarArticle() {
             };
 
             console.log(params);
-            if (parseInt(localStorage.getItem("token")) === 1) {
+            let token = localStorage.getItem("token");
+            if (token.length > 5) {
                 let url = "http://localhost:8080/MONGO/api/article/insert";
                 fetch(url, {
                     method: "POST",
@@ -185,6 +212,8 @@ function insertarArticle() {
                         .then(response => response.json())
                         .then(data => {
                             //alert(JSON.stringify(data));
+                            alert("SAVE ARTICLE");
+
                         })
                         .catch(error => {
                             console.error("Error al enviar la solicitud:", error);
@@ -220,7 +249,7 @@ function inserCom(mensaje, titulo) {
         //alert("lalas "+token.length);
         if (token.length > 5) {
             //alert("caca");
-            
+
             console.log("token" + token);
             let url = "http://localhost:8080/MONGO/api/article/updateCom";
             fetch(url, {
@@ -239,7 +268,7 @@ function inserCom(mensaje, titulo) {
                     });
             cargaArtc();
         } else {
-             console.log("token" + token);
+            console.log("token" + token);
             alert("FIRST LOG IN PLEASE");
         }
         cleanCom();
@@ -401,8 +430,38 @@ function singIn() {
                 alert("Error al enviar la solicitud:", error);
             });
 }
+function palabra() {
 
-
+    let title = "jaja";
+    //console.log("TItulo: " + title);
+    //let param = { title: title };
+    let param = {title: title};
+    let url = "http://localhost:8080/MONGO/api/article/palabra";
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+        },
+        body: new URLSearchParams(param)
+    })
+            .then(response => response.json())
+            .then(data => {
+                // console.log("Palabra: " + data);
+                console.log(data.id);
+                let p = data.id;
+                //document.getElementById("txtMsj").value = p;
+                let inputElement = document.getElementById("txtPalabra");
+                if (inputElement) {
+                    inputElement.value = p; // Usar .value si "inpCom" es un elemento de entrada
+                } else {
+                    console.log("El elemento con ID 'txtMsj' no existe en el DOM.");
+                }
+                //return data.id;
+            })
+            .catch(error => {
+                console.log("Error al enviar la solicitud de la palabra:", error);
+            });
+}
 function cleanLog() {
     document.getElementById("txtUser").value = "";
     document.getElementById("txtPassw").value = "";
@@ -423,4 +482,48 @@ function cargaLogOut() {
     localStorage.setItem("token", 0);
     localStorage.removeItem("user");
     alert("Log out successful");
+}
+
+async function estadisticas(like, dislike, mensaje) {
+//    alert(mensaje);
+    mensaje.forEach(comment => {
+        console.log(comment.mensaje);
+    });
+    try {
+        // Realizar la carga del HTML
+        await cargaEsta();
+
+        // Obtener el elemento canvas después de que se haya cargado el HTML
+        let miCanvas = document.getElementById('MiGrafica').getContext('2d');
+        miCanvas.width = 200; // Ancho de 400 píxeles
+        miCanvas.height = 200; // Alto de 300 píxeles
+        // Crear la gráfica
+        var chart = new Chart(miCanvas, {
+            type: "bar",
+            data: {
+                labels: ["Like", "Dislike"],
+                datasets: [{
+                        label: "Estadistica de Reacciones",
+                        backgroundColor: 'rgb(0,0,0)',
+                        borderColor: 'rgb(0,255,0)',
+                        data: [like, dislike]
+                    }]
+            },
+            options: {
+                responsive: true, // Ajusta el tamaño de la gráfica automáticamente
+                maintainAspectRatio: false // Evita que el canvas mantenga una relación de aspecto específica
+                        // Puedes establecer el tamaño del canvas directamente aquí si lo prefieres:
+                        // width: 400,
+                        // height: 300
+            }
+        });
+    } catch (error) {
+        alert("Error al crear la gráfica: " + error.message);
+    }
+}
+
+
+
+function prueba() {
+    return "hola";
 }

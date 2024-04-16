@@ -5,8 +5,10 @@
 package org.utl.controller;
 
 import com.mongodb.MongoException;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
@@ -15,7 +17,10 @@ import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.InsertOneResult;
 import com.mongodb.client.result.UpdateResult;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
@@ -279,5 +284,48 @@ public class ControllerArticle {
             }
         }
     }
+    
+     public String palabraMasRepetidaEnComentarios(String title) {
+        try (MongoClient client = CConexion.getConnection()) {
+            MongoDatabase db = client.getDatabase("blogPage");
+            MongoCollection<Document> collection = db.getCollection("article");
 
+            // Obtener el documento del artículo
+            Document articleDocument = collection.find(new Document("title", title)).first();
+            if (articleDocument == null) {
+                return "No se encontre ningun articulo con ese titulo";
+            }
+
+            // Obtener la lista de comentarios del artículo
+            @SuppressWarnings("unchecked")
+            Iterable<Document> comments = (Iterable<Document>) articleDocument.get("comments");
+
+            // Contar las palabras en los comentarios
+            Map<String, Integer> palabraCont = new HashMap<>();
+            for (Document comment : comments) {
+                String mensaje = (String) comment.get("mensaje");
+                String[] palabras = mensaje.split("\\s+");
+                for (String palabra : palabras) {
+                    palabra = palabra.toLowerCase();
+                    palabraCont.put(palabra, palabraCont.getOrDefault(palabra, 0) + 1);
+                }
+            }
+
+            // Encontrar la palabra más repetida
+            String palabraMasRepetida = "";
+            int maxCount = 0;
+            for (Map.Entry<String, Integer> entry : palabraCont.entrySet()) {
+                if (entry.getValue() > maxCount) {
+                    maxCount = entry.getValue();
+                    palabraMasRepetida = entry.getKey();
+                }
+            }
+
+            return palabraMasRepetida;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Error al obtener la palabra más repetida en los comentarios";
+        }
+    }
 }

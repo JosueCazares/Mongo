@@ -2,6 +2,7 @@ body {
     margin: 0;
     background-color: #fff;
     font-family: Inter;
+    height: 100%;
 }
 
 .nav {
@@ -355,3 +356,20 @@ body {
 }
 
 
+.fa{
+    margin: 5px;
+}
+
+
+
+.btnAction{
+    margin: 5px;
+    height: 30px;
+    width: 70%;
+    font-size: 1rem;
+    border: 1px black solid;
+    background-color: white;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+} 

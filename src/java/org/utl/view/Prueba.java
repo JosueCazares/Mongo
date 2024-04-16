@@ -21,6 +21,7 @@ public class Prueba {
 
     public static void main(String[] args) {
         ControllerArticle ca = new ControllerArticle();
+        
         //pr1();
         //ca.read();
         //System.out.println(ca.read());
@@ -28,7 +29,8 @@ public class Prueba {
         //pruebaUpdate();
         //prbComv2();
         //prubeLogv2();
-        prbReacv2();
+        //prbReacv2();
+        pruebaPalabra();
     }
 
     public static void pr1() {
@@ -290,5 +292,10 @@ public class Prueba {
         document.append("title", a.getTitle());
         ControllerArticle ca = new ControllerArticle();
         System.out.println(ca.reaccionv2(document));
+    }
+    public static void pruebaPalabra(){
+    ControllerArticle ca = new ControllerArticle();
+    String title = "Test";
+        System.out.println(ca.palabraMasRepetidaEnComentarios(title));
     }
 }

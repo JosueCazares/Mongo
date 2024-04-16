@@ -74,6 +74,24 @@ public class ArticleRest {
         }
         return Response.ok(out).build();
     }
+    @Path("palabra")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response palabra(@FormParam("title") @DefaultValue("") String title) {
+        System.out.println("palabra:"+title);
+        System.out.println(title.length());
+        String out = "";
+        try {
+            ControllerArticle objCE = new ControllerArticle();
+            String id = objCE.palabraMasRepetidaEnComentarios(title);
+            // Devolver solo el ID como parte del objeto JSON de respuesta
+            out = "{\"id\": \"" + id + "\"}";
+        } catch (Exception e) {
+            e.printStackTrace();
+            out = "{\"error\":\"" + e.getMessage() + "\"}";
+        }
+        return Response.ok(out).build();
+    }
     @Path("reacciones")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
